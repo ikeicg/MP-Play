@@ -1,0 +1,37 @@
+.main{
+    padding-bottom: 5vh;
+}
+
+#banner{
+    display: flex;
+    flex-direction: column;
+    margin: var(--pad-xl) var(--pad-l);
+    font-weight: 700;
+}
+
+.banner-slide{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 200px;
+    margin: var(--pad-m) var(--pad-l);
+    border: 2px solid white;
+    border-radius: var(--pad-s);
+    font-size: 2em;
+}
+
+.banner-slide .banner-img{
+    height: 100%;
+    width: 30%;
+}
+
+.banner-img img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.banner-text{
+    flex: auto;
+    text-align: center;
+}
