@@ -16,7 +16,7 @@ const Banner = () => {
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [genreImg.length]);
+  }, []);
 
   return (
     <div id="banner">

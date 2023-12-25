@@ -6,12 +6,20 @@
     padding: var(--pad-m);
     border-bottom: 2px solid var(--color4);
     font-weight: 600;
+    font-size: var(--font-s1);
     user-select: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    background-color: var(--color1);
+    z-index: 100;
 }
 
 #navbar .navLink{
     margin: var(--pad-xxl);
     cursor: pointer;
+    color: var(--color4);
 }
 
 .p-icon{
@@ -22,4 +30,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.selected{
+    color: var(--color3) !important;
 }

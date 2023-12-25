@@ -1,19 +1,29 @@
 import React from "react";
 import "./navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
+  const { pathname } = useLocation();
   return (
     <nav id="navbar">
       <div className="nav-item-l">Music</div>
       <div className="nav-item-l">
-        <Link to="/" className="navLink">
+        <Link
+          to="/"
+          className={`navLink ${pathname === "/" ? "selected" : ""}`}
+        >
           Home
         </Link>
-        <Link to="library" className="navLink">
+        <Link
+          to="library"
+          className={`navLink ${pathname === "/library" ? "selected" : ""}`}
+        >
           Library
         </Link>
-        <Link to="search" className="navLink">
+        <Link
+          to="search"
+          className={`navLink ${pathname === "/search" ? "selected" : ""}`}
+        >
           Search
         </Link>
       </div>

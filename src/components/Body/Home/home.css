@@ -1,11 +1,12 @@
 .main{
-    padding-bottom: 5vh;
+   margin: 65px 0 70px 0;
 }
 
 #banner{
     display: flex;
     flex-direction: column;
     margin: var(--pad-xl) var(--pad-l);
+    font-size: var(--font-s2);
     font-weight: 700;
 }
 
@@ -14,11 +15,12 @@
     flex-direction: row;
     align-items: center;
     height: 200px;
-    margin: var(--pad-m) var(--pad-l);
+    margin: var(--pad-xl) var(--pad-l);
     border: 2px solid white;
     border-radius: var(--pad-s);
-    font-size: 2em;
+    font-size: var(--font-s3);
 }
+
 
 .banner-slide .banner-img{
     height: 100%;
@@ -35,3 +37,34 @@
     flex: auto;
     text-align: center;
 }
+
+
+
+/* Quickpicks Area */
+
+#quickpick{
+    display: flex;
+    flex-direction: column; 
+    margin: var(--pad-xl) var(--pad-l);
+}
+
+.qp-header{
+    font-size: var(--font-s2);
+    font-weight: 700;
+}
+
+.qp-header span{
+    font-size: 1rem;
+    color: var(--color4);
+    font-weight: 500;
+    display: block;
+}
+
+.songcards{
+    padding: var(--pad-m);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+    grid-gap: 5px;
+    justify-items: center;
+}
+
