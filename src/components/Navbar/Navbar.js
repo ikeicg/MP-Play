@@ -6,7 +6,7 @@ const Navbar = () => {
   const { pathname } = useLocation();
   return (
     <nav id="navbar">
-      <div className="nav-item-l">Music</div>
+      <div className="nav-item-l">MP-PLAY</div>
       <div className="nav-item-l">
         <Link
           to="/"

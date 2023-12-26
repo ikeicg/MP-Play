@@ -9,16 +9,16 @@ const Quickpick = () => {
 
   useEffect(() => {
     setAppState((prev) => ({ ...prev, playlist: allSongs }));
-  }, []);
+  }, [allSongs, setAppState]);
 
   return (
     <div id="quickpick">
       <div className="qp-header">
-        Quickpicks
+        Playlist
         <span>Start Listening</span>
       </div>
       <div className="songcards">
-        {playlist.slice(0, 12).map((song, index) => (
+        {playlist.map((song, index) => (
           <Songcard key={index} ind={index} song={allSongs[index]} />
         ))}
       </div>

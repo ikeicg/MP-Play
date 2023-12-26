@@ -1,5 +1,13 @@
 export const allSongs = [
   {
+    name: "Tokyo Cafe",
+    artiste: "Tvari",
+    image: "/assets/images/trackimg/tvari-tokyo-cafe.jpg",
+    source: "/assets/audio/tvari-tokyo-cafe.mp3",
+    genre: "pop",
+  },
+
+  {
     name: "5 and 6",
     artiste: "Naeto C",
     image: "/assets/images/trackimg/5and6_naetoc.jpg",

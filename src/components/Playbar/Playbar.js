@@ -7,6 +7,7 @@ const state = {
   extendedPlaybar: false,
   songTime: 0,
   songDuration: 0,
+  favorite: false,
 };
 
 const Playbar = () => {
@@ -95,6 +96,31 @@ const Playbar = () => {
     }
   };
 
+  const setFavorites = () => {
+    let favorites = localStorage.getItem("favorites");
+    favorites = favorites ? JSON.parse(favorites) : [];
+
+    if (pbState.favorite) {
+      favorites = favorites.filter(
+        (i) => i.name !== song.name || i.artiste !== song.artiste
+      );
+    } else {
+      favorites.push(song);
+    }
+
+    setPbState((prev) => ({ ...prev, favorite: !prev.favorite }));
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  };
+
+  const formatTime = (timeInSeconds) => {
+    const minutes = Math.floor(timeInSeconds / 60);
+    const seconds = Math.floor(timeInSeconds % 60);
+    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
+      2,
+      "0"
+    )}`;
+  };
+
   useEffect(() => {
     if (playing) {
       audioTrack.current.play();
@@ -102,6 +128,18 @@ const Playbar = () => {
       audioTrack.current.pause();
     }
   }, [playing, song]);
+
+  useEffect(() => {
+    let favorites = localStorage.getItem("favorites");
+    favorites = favorites ? JSON.parse(favorites) : [];
+
+    if (favorites) {
+      let exists = favorites.some(
+        (i) => song.name === i.name && song.artiste === i.artiste
+      );
+      setPbState((prev) => ({ ...prev, favorite: exists }));
+    }
+  }, [song]);
 
   return (
     <div id="playbar">
@@ -147,7 +185,6 @@ const Playbar = () => {
           </div>
           <div id="trackaudio">
             <audio
-              aria-hidden={"true"}
               ref={audioTrack}
               src={song.source}
               onEnded={() => nextSong("")}
@@ -160,15 +197,9 @@ const Playbar = () => {
         <div className="controls2 trackcontrols">
           <div id="timestamp" className="smhide">
             <p>
-              <span id="currenttime">
-                {Math.floor(pbState.songTime / 60)}:
-                {Math.floor(pbState.songTime % 60)}
-              </span>
+              <span id="currenttime">{formatTime(pbState.songTime)}</span>
               <span> / </span>
-              <span id="duration">
-                {Math.floor(pbState.songDuration / 60)}:
-                {Math.floor(pbState.songDuration % 60)}
-              </span>
+              <span id="duration">{formatTime(pbState.songDuration)}</span>
             </p>
           </div>
           <i
@@ -176,6 +207,13 @@ const Playbar = () => {
             onClick={togglePltControl}
           >
             {pbState.playlistControl}
+          </i>
+          <i
+            className="material-icons playlistcontrols"
+            onClick={setFavorites}
+            style={{ color: pbState.favorite ? "red" : "grey" }}
+          >
+            favorite
           </i>
         </div>
       </div>
