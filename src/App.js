@@ -10,7 +10,7 @@ const state = {
   songIndex: 0,
   playbar: false,
   playing: false,
-  favorites: []
+  favorites: [],
 };
 
 export const App = () => {
@@ -18,7 +18,7 @@ export const App = () => {
 
   return (
     <>
-  <Navbar />
+      <Navbar />
       <PlayerContext.Provider value={{ appState, setAppState }}>
         <Body />
         {appState.playbar && <Playbar />}

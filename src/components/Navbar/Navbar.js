@@ -9,28 +9,36 @@ const Navbar = () => {
       <div className="nav-item nav-item-l">MP-PLAY</div>
       <div className="nav-item nav-item-l">
         <Link
-          to="/"
-          className={`navLink ${pathname === "/" ? "selected" : ""}`}
+          to={`${process.env.PUBLIC_URL}/`}
+          className={`navLink ${
+            pathname === process.env.PUBLIC_URL + "/" ? "selected" : ""
+          }`}
         >
           Home
         </Link>
         <Link
-          to="favorites"
-          className={`navLink ${pathname === "/favorites" ? "selected" : ""}`}
+          to={`${process.env.PUBLIC_URL}/favorites`}
+          className={`navLink ${
+            pathname === process.env.PUBLIC_URL + "/favorites" ? "selected" : ""
+          }`}
         >
           Favorites
         </Link>
       </div>
       <div className="nav-item nav-item-s">
         <Link
-          to="/"
-          className={`navLink ${pathname === "/" ? "selected" : ""}`}
+          to={`${process.env.PUBLIC_URL}/`}
+          className={`navLink ${
+            pathname === process.env.PUBLIC_URL + "/" ? "selected" : ""
+          }`}
         >
           <i className="material-icons">home</i>
         </Link>
         <Link
-          to="favorites"
-          className={`navLink ${pathname === "/favorites" ? "selected" : ""}`}
+          to={`${process.env.PUBLIC_URL}/favorites`}
+          className={`navLink ${
+            pathname === process.env.PUBLIC_URL + "/favorites" ? "selected" : ""
+          }`}
         >
           <i className="material-icons">library_music</i>
         </Link>

@@ -6,8 +6,11 @@ import { Routes, Route } from "react-router-dom";
 const Body = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="favorites" element={<Favorites />} />
+      <Route path={`${process.env.PUBLIC_URL}/`} element={<Home />} />
+      <Route
+        path={`${process.env.PUBLIC_URL}/favorites`}
+        element={<Favorites />}
+      />
     </Routes>
   );
 };

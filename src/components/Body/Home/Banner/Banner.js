@@ -26,7 +26,10 @@ const Banner = () => {
         className="banner-slide"
       >
         <div className="banner-img">
-          <img src={genreImg[imgIndex][0]} alt="theme" />
+          <img
+            src={process.env.PUBLIC_URL + genreImg[imgIndex][0]}
+            alt="theme"
+          />
         </div>
         <div className="banner-text">{genreImg[imgIndex][1]}</div>
       </div>

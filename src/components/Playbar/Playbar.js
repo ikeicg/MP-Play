@@ -194,7 +194,7 @@ const Playbar = () => {
 
             <div id="trackdata">
               <div className="trackimg smhide2">
-                <img src={song.image} alt="trackimg" />
+                <img src={process.env.PUBLIC_URL + song.image} alt="trackimg" />
               </div>
               <div className="trackdetails">
                 <p id="trackname">{song.name}</p>
@@ -203,7 +203,7 @@ const Playbar = () => {
               <div id="trackaudio">
                 <audio
                   ref={audioTrack}
-                  src={song.source}
+                  src={process.env.PUBLIC_URL + song.source}
                   onEnded={() => nextSong("")}
                   onLoadedData={handleMeta}
                   onTimeUpdate={handleTimeUpdate}

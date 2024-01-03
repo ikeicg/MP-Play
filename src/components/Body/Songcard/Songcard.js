@@ -20,7 +20,7 @@ const Songcard = (props) => {
   return (
     <div onClick={handleClick} className="songcard">
       <div className="songcard-img">
-        <img src={song.image} alt="" />
+        <img src={process.env.PUBLIC_URL + song.image} alt="" />
       </div>
       <div className="songcard-details">
         <h4 className="songname">{song.name}</h4>
