@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/MP-Play/static/css/main.be2c50e8.css",
+    "main.js": "/MP-Play/static/js/main.95f867e6.js",
+    "index.html": "/MP-Play/index.html",
+    "main.be2c50e8.css.map": "/MP-Play/static/css/main.be2c50e8.css.map",
+    "main.95f867e6.js.map": "/MP-Play/static/js/main.95f867e6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.be2c50e8.css",
+    "static/js/main.95f867e6.js"
+  ]
+}
