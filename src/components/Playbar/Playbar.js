@@ -14,10 +14,18 @@ const Playbar = () => {
   const { appState, setAppState } = useContext(PlayerContext);
   const [pbState, setPbState] = useState(state);
   const { playlist, songIndex, playing } = appState;
-  const song = playlist[songIndex];
+  let song = playlist[songIndex];
 
   const audioTrack = useRef();
   const progressbar = useRef();
+
+  if (!song) {
+    if (!playlist) {
+      setAppState((prev) => ({ ...prev, playing: false, playbar: false }));
+    } else {
+      song = playlist[0];
+    }
+  }
 
   const togglePlay = () => {
     setAppState((prev) => ({ ...prev, playing: !playing }));
@@ -66,7 +74,8 @@ const Playbar = () => {
 
   const nextSong = (type) => {
     const text = pbState.playlistControl;
-    let index = songIndex;
+    let index = songIndex >= playlist.length ? playlist.length - 1 : songIndex;
+
     switch (text) {
       case "repeat":
         const totalSongs = playlist.length;
@@ -107,7 +116,7 @@ const Playbar = () => {
     } else {
       favorites.push(song);
     }
-
+    setAppState((prev) => ({ ...prev, favorites }));
     setPbState((prev) => ({ ...prev, favorite: !prev.favorite }));
     localStorage.setItem("favorites", JSON.stringify(favorites));
   };
@@ -122,10 +131,12 @@ const Playbar = () => {
   };
 
   useEffect(() => {
-    if (playing) {
-      audioTrack.current.play();
-    } else {
-      audioTrack.current.pause();
+    if (song) {
+      if (playing) {
+        audioTrack.current.play();
+      } else {
+        audioTrack.current.pause();
+      }
     }
   }, [playing, song]);
 
@@ -142,82 +153,90 @@ const Playbar = () => {
   }, [song]);
 
   return (
-    <div id="playbar">
-      <div id="progressarea" ref={progressbar} onClick={changeTime}>
-        <div
-          id="progressbar"
-          style={{
-            width: `${(pbState.songTime / pbState.songDuration) * 100}%`,
-          }}
-        ></div>
-      </div>
+    <>
+      {song && (
+        <div id="playbar">
+          <div id="progressarea" ref={progressbar} onClick={changeTime}>
+            <div
+              id="progressbar"
+              style={{
+                width: `${(pbState.songTime / pbState.songDuration) * 100}%`,
+              }}
+            ></div>
+          </div>
 
-      <div id="trackmeta">
-        <div id="controls">
-          <div className="trackcontrols">
-            <i
-              className="material-icons"
-              id="skipprev"
-              onClick={() => nextSong("prev")}
-            >
-              skip_previous
-            </i>
-            <i className="material-icons" id="play-pause" onClick={togglePlay}>
-              {playing ? "pause" : "play_arrow"}
-            </i>
-            <i
-              className="material-icons"
-              id="skipnext"
-              onClick={() => nextSong("")}
-            >
-              skip_next
-            </i>
+          <div id="trackmeta">
+            <div id="controls">
+              <div className="trackcontrols">
+                <i
+                  className="material-icons"
+                  id="skipprev"
+                  onClick={() => nextSong("prev")}
+                >
+                  skip_previous
+                </i>
+                <i
+                  className="material-icons"
+                  id="play-pause"
+                  onClick={togglePlay}
+                >
+                  {playing ? "pause" : "play_arrow"}
+                </i>
+                <i
+                  className="material-icons"
+                  id="skipnext"
+                  onClick={() => nextSong("")}
+                >
+                  skip_next
+                </i>
+              </div>
+            </div>
+
+            <div id="trackdata">
+              <div className="trackimg smhide2">
+                <img src={song.image} alt="trackimg" />
+              </div>
+              <div className="trackdetails">
+                <p id="trackname">{song.name}</p>
+                <p id="trackartiste">{song.artiste}</p>
+              </div>
+              <div id="trackaudio">
+                <audio
+                  ref={audioTrack}
+                  src={song.source}
+                  onEnded={() => nextSong("")}
+                  onLoadedData={handleMeta}
+                  onTimeUpdate={handleTimeUpdate}
+                ></audio>
+              </div>
+            </div>
+
+            <div id="controls2" className="trackcontrols">
+              <div id="timestamp" className="smhide">
+                <p>
+                  <span id="currenttime">{formatTime(pbState.songTime)}</span>
+                  <span> / </span>
+                  <span id="duration">{formatTime(pbState.songDuration)}</span>
+                </p>
+              </div>
+              <i
+                className="material-icons playlistcontrols"
+                onClick={togglePltControl}
+              >
+                {pbState.playlistControl}
+              </i>
+              <i
+                className="material-icons playlistcontrols"
+                onClick={setFavorites}
+                style={{ color: pbState.favorite ? "red" : "grey" }}
+              >
+                favorite
+              </i>
+            </div>
           </div>
         </div>
-
-        <div id="trackdata">
-          <div className="trackimg smhide2">
-            <img src={song.image} alt="trackimg" />
-          </div>
-          <div className="trackdetails">
-            <p id="trackname">{song.name}</p>
-            <p id="trackartiste">{song.artiste}</p>
-          </div>
-          <div id="trackaudio">
-            <audio
-              ref={audioTrack}
-              src={song.source}
-              onEnded={() => nextSong("")}
-              onLoadedData={handleMeta}
-              onTimeUpdate={handleTimeUpdate}
-            ></audio>
-          </div>
-        </div>
-
-        <div className="controls2 trackcontrols">
-          <div id="timestamp" className="smhide">
-            <p>
-              <span id="currenttime">{formatTime(pbState.songTime)}</span>
-              <span> / </span>
-              <span id="duration">{formatTime(pbState.songDuration)}</span>
-            </p>
-          </div>
-          <i
-            className="material-icons playlistcontrols"
-            onClick={togglePltControl}
-          >
-            {pbState.playlistControl}
-          </i>
-          <i
-            className="material-icons playlistcontrols"
-            onClick={setFavorites}
-            style={{ color: pbState.favorite ? "red" : "grey" }}
-          >
-            favorite
-          </i>
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 

@@ -6,8 +6,8 @@ const Navbar = () => {
   const { pathname } = useLocation();
   return (
     <nav id="navbar">
-      <div className="nav-item-l">MP-PLAY</div>
-      <div className="nav-item-l">
+      <div className="nav-item nav-item-l">MP-PLAY</div>
+      <div className="nav-item nav-item-l">
         <Link
           to="/"
           className={`navLink ${pathname === "/" ? "selected" : ""}`}
@@ -15,19 +15,27 @@ const Navbar = () => {
           Home
         </Link>
         <Link
-          to="library"
-          className={`navLink ${pathname === "/library" ? "selected" : ""}`}
+          to="favorites"
+          className={`navLink ${pathname === "/favorites" ? "selected" : ""}`}
         >
-          Library
-        </Link>
-        <Link
-          to="search"
-          className={`navLink ${pathname === "/search" ? "selected" : ""}`}
-        >
-          Search
+          Favorites
         </Link>
       </div>
-      <div className="nav-item-l p-icon">
+      <div className="nav-item nav-item-s">
+        <Link
+          to="/"
+          className={`navLink ${pathname === "/" ? "selected" : ""}`}
+        >
+          <i className="material-icons">home</i>
+        </Link>
+        <Link
+          to="favorites"
+          className={`navLink ${pathname === "/favorites" ? "selected" : ""}`}
+        >
+          <i className="material-icons">library_music</i>
+        </Link>
+      </div>
+      <div className="nav-item p-icon">
         <i className="material-icons">person</i>
       </div>
     </nav>

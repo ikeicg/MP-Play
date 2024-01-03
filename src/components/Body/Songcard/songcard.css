@@ -1,27 +1,37 @@
-
-.songcard{
-    display: flex;
-    flex-direction: column;
-    margin: 5px;    
-    cursor: pointer;
+.songcard {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  cursor: pointer;
+  font-size: 16px;
 }
 
-.songcard-img{
-    width: inherit;
-    aspect-ratio: 1;
-    border-radius: 6px;
-    overflow: hidden;
-    position: relative;
+.songcard-img {
+  width: inherit;
+  aspect-ratio: 1;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
 }
 
-.songcard-img img{
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+.songcard-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
-.artistename{
-    color: var(--color3);
-    opacity: .7;
-    
+.artistename {
+  color: var(--color3);
+  opacity: 0.7;
+  font-size: 0.8em;
+}
+
+.songname {
+  font-size: 0.9em;
+}
+
+@media (max-width: 600px) {
+  .songcard {
+    font-size: 12px;
+  }
 }

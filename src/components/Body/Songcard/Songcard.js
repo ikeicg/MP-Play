@@ -3,13 +3,14 @@ import "./songcard.css";
 import { PlayerContext } from "../../../App";
 
 const Songcard = (props) => {
-  const song = props.song;
-  const ind = props.ind;
-  const { appState, setAppState } = useContext(PlayerContext);
+  const { song, ind, playlist } = props;
+
+  const { setAppState } = useContext(PlayerContext);
 
   const handleClick = () => {
     setAppState((prev) => ({
       ...prev,
+      playlist,
       playbar: true,
       songIndex: ind,
       playing: true,

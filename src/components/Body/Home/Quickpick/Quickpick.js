@@ -1,16 +1,11 @@
-import React, { useContext, useEffect } from "react";
-import { PlayerContext } from "../../../../App";
+import React from "react";
 import Songcard from "../../Songcard/Songcard";
+import { allSongs } from "../../../../db";
 
 const Quickpick = () => {
-  const { appState, setAppState } = useContext(PlayerContext);
-
-  const { allSongs, playlist } = appState;
-
-  useEffect(() => {
-    setAppState((prev) => ({ ...prev, playlist: allSongs }));
-  }, [allSongs, setAppState]);
-
+  let newplaylist = allSongs.sort((a, b) =>
+    a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+  );
   return (
     <div id="quickpick">
       <div className="qp-header">
@@ -18,8 +13,13 @@ const Quickpick = () => {
         <span>Start Listening</span>
       </div>
       <div className="songcards">
-        {playlist.map((song, index) => (
-          <Songcard key={index} ind={index} song={allSongs[index]} />
+        {newplaylist.map((song, index) => (
+          <Songcard
+            key={index}
+            ind={index}
+            song={song}
+            playlist={newplaylist}
+          />
         ))}
       </div>
     </div>

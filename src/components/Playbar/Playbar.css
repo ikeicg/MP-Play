@@ -1,108 +1,184 @@
 #playbar {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    background: black;
-    cursor: pointer;
-    user-select: none;
-    display: flex;
-    flex-direction: column;
-    height: 70px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: black;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  height: 60px;
+  overflow: hidden;
+  font-size: 16px;
 }
 
-
-#progressarea{
-    width: 100%;
-    height: 5px;
-    background-color: rgba(255, 255, 255, 0.6);
-    overflow: hidden;
+#progressarea {
+  position: relative;
+  width: 100%;
+  height: 5px;
+  background-color: rgba(255, 255, 255, 0.6);
+  overflow: hidden;
 }
 
-#progressbar{
-    height: inherit;
-    background-color: red;
-    position: absolute;
+#progressbar {
+  height: inherit;
+  background-color: red;
+  position: absolute;
 }
 
-#trackmeta{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
+#trackmeta {
+  display: flex;
+  align-items: center;
+  margin: auto 10px;
 }
 
 #trackmeta > * {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 #trackmeta #controls {
-    width: 25%;
-    justify-content: left;
+  width: 25%;
+  justify-content: left;
 }
 
 .trackcontrols {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .trackcontrols i {
-    font-size: 30px;
-    margin: 0 10px;
+  font-size: 30px;
+  margin: 0 5px;
 }
 
 #timestamp {
-    padding: 0 15px;
+  padding: 0 5px;
 }
 
 #timestamp span {
-    color: rgba(255, 255, 255, 0.7);
-    font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
 }
 
 #play-pause {
-    font-size: 40px;
+  font-size: 40px;
 }
 
 #trackmeta #trackdata {
-    width: 50%;
-    justify-content: center;
+  width: 50%;
+  justify-content: center;
 }
 
 .trackimg {
-    width: 40px;
-    border-radius: 3px;
-    margin: 0 20px;
-    overflow: hidden;
+  width: 40px;
+  border-radius: 3px;
+  margin: 0 20px;
+  overflow: hidden;
 }
 
 .trackimg img {
-    width: 100%;
+  width: 100%;
 }
 
 #trackname {
-    font-weight: 600;
-    width: 155px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  font-weight: 600;
+  width: 155px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #trackartiste {
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.7);
-    width: 155px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  width: 155px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-#trackmeta .controls2 {
-    width: 25%;
-    justify-content: right;
+#trackmeta #controls2 {
+  width: 25%;
+  justify-content: space-between;
 }
 
-.playlistcontrols, .showmore {
-    color: rgba(255, 255, 255, 0.7);
+.playlistcontrols,
+.showmore {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+#controls,
+#controls2,
+#progressarea {
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .smhide {
+    display: none;
+  }
+
+  #trackmeta #trackdata {
+    width: 50%;
+  }
+
+  #trackmeta #controls {
+    width: 30%;
+  }
+  #trackmeta #controls2 {
+    width: 20%;
+  }
+}
+
+@media (max-width: 600px) {
+  #playbar {
+    font-size: 12px;
+  }
+
+  .trackcontrols i {
+    font-size: 20px;
+  }
+
+  #play-pause {
+    font-size: 25px;
+  }
+
+  .smhide2 {
+    display: none;
+  }
+
+  #timestamp {
+    display: none;
+  }
+
+  .trackdetails {
+    text-align: center;
+  }
+
+  .trackimg {
+    display: none;
+  }
+
+  #playbar {
+    height: 50px;
+  }
+}
+
+@media (max-width: 300px) {
+  #playbar {
+    font-size: 11px;
+  }
+
+  .trackcontrols i {
+    font-size: 15px;
+  }
+
+  #play-pause {
+    font-size: 20px;
+  }
+
+  #trackmeta {
+    margin: auto 0;
+  }
 }

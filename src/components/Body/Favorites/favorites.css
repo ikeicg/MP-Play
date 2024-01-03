@@ -1,0 +1,14 @@
+.f-header {
+  padding: 10px;
+  margin: 0 15px 20px 15px;
+  border-left: 6px solid var(--color2);
+  border-radius: var(--pad-xs);
+  font-size: 1.4em;
+}
+
+.nofav {
+  width: 100%;
+  color: var(--color4);
+  text-align: center;
+  padding: 20px;
+}
