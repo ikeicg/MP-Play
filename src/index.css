@@ -39,7 +39,6 @@
 }
 
 body {
-  /* background-color: var(--color1); */
   width: 100%;
   font-family: var(--font-f2);
   background-color: black;
