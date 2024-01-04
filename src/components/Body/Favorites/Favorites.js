@@ -8,7 +8,6 @@ const Favorites = () => {
   const { favorites } = appState;
 
   const [favState, setFavState] = useState([]);
-  let initialRender = useRef(true);
 
   useEffect(() => {
     let x = localStorage.getItem("favorites");
@@ -18,12 +17,6 @@ const Favorites = () => {
         )
       : [];
     setFavState(x);
-
-    if (!initialRender.current) {
-      setAppState((prev) => ({ ...prev, playlist: x }));
-    } else {
-      initialRender.current = false;
-    }
   }, [favorites, setAppState]);
 
   return (
